@@ -29,7 +29,7 @@ public class usersteps extends TestBase {
 	public void i_entered(String firstname, String lastname, String email, String password) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
 		 r = new Register(d);
-		   r.usereg(firstname, lastname, email, password);
+		 r.usereg(firstname, lastname, email, password);
 	    
 	}
 
