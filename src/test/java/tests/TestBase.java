@@ -8,7 +8,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -51,20 +54,33 @@ public class TestBase extends AbstractTestNGCucumberTests
 	public void startDriver(@Optional("chrome") String browserName) 
 	{
 		if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver.exe");
 			d = new ChromeDriver(chromeOption()); 
 		}
 
 		else if(browserName.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/drivers/geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/Drivers/geckodriver.exe");
 			d = new FirefoxDriver(firefoxOption()); 
 		}
 
+		else if (browserName.equalsIgnoreCase("headless")) 
+		{
+			
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setJavascriptEnabled(true);
+			dc.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, 
+					System.getProperty("user.dir")+"/Drivers/phantomjs.exe"); 
+			String [] ph= {"--web-security=no","--ignore-ssl-errors=yes"};
+			dc.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS,ph);
+			d = new PhantomJSDriver(dc);
+		}
+		
 		else if (browserName.equalsIgnoreCase("ie")) 
 		{
-			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"/drivers/IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"/Drivers/IEDriverServer.exe");
 			d = new InternetExplorerDriver(); 
 		}
+		
 
 		else if (browserName.equalsIgnoreCase("safari")) {
 			d = new SafariDriver(); 
