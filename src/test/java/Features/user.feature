@@ -8,5 +8,5 @@ Then the register page displayed successfully
 
 Examples:
         | firstname | lastname | email | password |
-        | s       |g       | s@g.com | 696967 |
-        | k       |m       | m@x.b   | 4564554 |
+        | srt |g    | s@vbg.com | 696967 |
+        | kfg |m    | m@bcvx.b   | 4564554 |
