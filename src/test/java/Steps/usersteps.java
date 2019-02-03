@@ -1,3 +1,4 @@
+
 package Steps;
 
 import org.testng.Assert;
@@ -25,20 +26,20 @@ public class usersteps extends TestBase {
 	   Assert.assertTrue(d.getCurrentUrl().contains("register"));
 	}
 	
-	@When("^I entered \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\"$")
-	public void i_entered(String firstname, String lastname, String email, String password) 
-	{
+	@When("^i entered \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\"$")
+	public void i_entered(String firstname, String lastname, String email, String password) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
 		 r = new Register(d);
-		 r.usereg(firstname, lastname,email,password);
+		 r.usereg(firstname, lastname, email, password);
 	    
 	}
 
 
 	@Then("^the register page displayed successfully$")
-	public void the_register_page_displayed_successfully()
-	{
-		//r = new Register(d);
+	public void the_register_page_displayed_successfully() throws Throwable {
+		r = new Register(d);
 		r.logout();
 	}
 
 }
+

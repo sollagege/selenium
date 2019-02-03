@@ -1,7 +1,9 @@
+
 package tests;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -59,19 +61,25 @@ public class TestBase extends AbstractTestNGCucumberTests
 			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/Drivers/geckodriver.exe");
 			d = new FirefoxDriver(firefoxOption()); 
 		}
-
+		
+		else if (browserName.equalsIgnoreCase("chrome-headless"))
+		{
+			System.setProperty("webdriver.chrome.driver",
+		    System.getProperty("user.dir")+"/Drivers/chromedriver.exe");
+			ChromeOptions op = new ChromeOptions();
+			op.addArguments("--headless");
+			op.addArguments("--window-size=1920,1090");
+			d = new ChromeDriver(op);
+			
+			
+		}
+		
 		else if (browserName.equalsIgnoreCase("ie")) 
 		{
 			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"/Drivers/IEDriverServer.exe");
 			d = new InternetExplorerDriver(); 
 		}
-		else if (browserName.equalsIgnoreCase("chromeheadless")) {
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver.exe");
-			ChromeOptions op = new ChromeOptions();
-			op.addArguments("--headless");
-			op.addArguments("--window-size=1920,1080");
-			d = new ChromeDriver(op); 
-		}
+		
 
 		else if (browserName.equalsIgnoreCase("safari")) {
 			d = new SafariDriver(); 
@@ -99,3 +107,4 @@ public class TestBase extends AbstractTestNGCucumberTests
 		}
 	}
 }
+
