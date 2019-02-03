@@ -1,5 +1,6 @@
 Feature: User Registration
 check if user can register in e-commerce website
+
 Scenario Outline: User Registration
 Given the user in the home page
 When i click on register link

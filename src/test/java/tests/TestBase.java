@@ -51,19 +51,26 @@ public class TestBase extends AbstractTestNGCucumberTests
 	public void startDriver(@Optional("chrome") String browserName) 
 	{
 		if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver.exe");
 			d = new ChromeDriver(chromeOption()); 
 		}
 
 		else if(browserName.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/drivers/geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/Drivers/geckodriver.exe");
 			d = new FirefoxDriver(firefoxOption()); 
 		}
 
 		else if (browserName.equalsIgnoreCase("ie")) 
 		{
-			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"/drivers/IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"/Drivers/IEDriverServer.exe");
 			d = new InternetExplorerDriver(); 
+		}
+		else if (browserName.equalsIgnoreCase("chromeheadless")) {
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver.exe");
+			ChromeOptions op = new ChromeOptions();
+			op.addArguments("--headless");
+			op.addArguments("--window-size=1920,1080");
+			d = new ChromeDriver(op); 
 		}
 
 		else if (browserName.equalsIgnoreCase("safari")) {

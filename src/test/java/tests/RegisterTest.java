@@ -19,7 +19,7 @@ public class RegisterTest extends TestBase {
 		H=new Home(d);
 		H.openRegister();
 		R=new Register(d);
-		R.usereg("sara", "ghareb", "sarah8@hotmail.com", "12345678");
+		R.usereg("sara", "g", "sarah8@hotmail.com", "12345678");
 		Assert.assertTrue(R.sucessmsg.getText().contains("Your registration completed"));	
 	}
 	
@@ -30,7 +30,7 @@ public class RegisterTest extends TestBase {
 		R.logout();
 	}
 	
-	@Test(dependsOnMethods= {"regsucess"})
+	@Test(dependsOnMethods= {"logout"})
 	public void login() 
 	{
 		H.OpenLogin();
